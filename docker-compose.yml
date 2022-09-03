@@ -1,0 +1,61 @@
+version: "3.7"
+
+services:
+  nexus:
+    image: registry.libraries.homelab/sonatype/nexus3:latest
+    container_name: nexus
+    restart: always
+    volumes:
+      - ${ETC_LOCALTIME}:/etc/localtime:ro
+      - nexus-data:/nexus-data
+      - ./backup:/nexus-backup
+    networks:
+      net-proxy:
+      net-ldap:
+      net-libraries:
+        aliases:
+          - libraries.homelab
+    environment:
+      - TZ=America/Maceio
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=net-proxy
+      - traefik.frontend.passHostHeader=true
+      - traefik.frontend.headers.SSLRedirect=true
+      - traefik.frontend.headers.forceSTSHeader=true
+      - traefik.frontend.headers.STSSeconds=315360000
+      - traefik.frontend.headers.STSIncludeSubdomains=true
+      - traefik.frontend.headers.STSPreload=true
+      - traefik.frontend.headers.browserXSSFilter=true
+      - traefik.frontend.headers.contentTypeNosniff=true
+
+      - traefik.registry.frontend.rule=Host:registry.libraries.homelab
+      - traefik.registry.frontend.backend=nexus
+      - traefik.registry.port=5000
+
+      - traefik.registry-interno.frontend.rule=Host:registry-interno.libraries.homelab
+      - traefik.registry-interno.frontend.backend=nexus
+      - traefik.registry-interno.port=5001
+
+      - traefik.libraries.frontend.rule=Host:libraries.homelab
+      - traefik.libraries.frontend.backend=nexus
+      - traefik.libraries.port=8081
+
+    # healthcheck:
+    #   # /service/metrics/ping and /service/metrics/healthcheck
+    #   test: curl --fail -s http://localhost:8081/service/metrics/healthcheck || exit 1
+    #   start_period: 30s #default: 0s
+    #   interval: 1m #default: 30s
+    #   timeout: 5s #default: 30s
+    #   retries: 10 #default: 3
+
+volumes:
+  nexus-data:
+    external: true
+networks:
+  net-proxy:
+    external: true
+  net-ldap:
+    external: true
+  net-libraries:
+    external: true

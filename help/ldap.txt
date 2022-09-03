@@ -1,0 +1,17 @@
+Create LDAP Connection:
+  Name:                     ldap
+  LDAP server address:      ldap openldap 389
+  Search base:              dc=homelab
+  Authentication method:    Simple Authentication
+  Username or DN:           cn=ldap-reader,dc=homelab
+  Password:                 ????
+
+Choose Users and Groups:
+  Configuration template:   Generic Ldap Server
+  Base DN:                  ou=users
+  Object class:             inetOrgPerson
+  User filter:              (&(objectClass=posixAccount)(memberOf=cn=nexus-user,ou=groups,dc=homelab))
+  User ID attribute:        uid
+  Real name attribute:      cn
+  Email attribute:          mail
+  Map LDAP groups as roles: OK

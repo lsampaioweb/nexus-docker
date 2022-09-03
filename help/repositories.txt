@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------
+Name:                             docker-internal
+Online:                           true
+Https:                            5001
+Disable to allow anonymous pull:  false
+Enable Docker V1 API:             true
+Blob store:                       Docker
+Strict Content Type Validation:   true
+Deployment policy:                Disable redeploy
+--------------------------------------------------------------------------------
+Name:                             docker-proxy
+Online:                           true
+Remote storage:                   https://registry-1.docker.io/
+Use the Nexus truststore:         true
+Docker Index:                     Use Docker Hub
+Auto blocking enabled:            true
+Blob store:                       Docker
+Strict Content Type Validation:   true
+Not found cache enabled:          true
+Deployment policy:                Disable redeploy
+--------------------------------------------------------------------------------
+Name:                             docker-all
+Online:                           true
+Https:                            5000
+Disable to allow anonymous pull:  false
+Enable Docker V1 API:             true
+Blob store:                       Docker
+Strict Content Type Validation:   true
+Member repositories:              docker-internal and docker-proxy
+--------------------------------------------------------------------------------
+Name:                             nuget-internal
+Online:                           true
+Blob store:                       Nuget
+Strict Content Type Validation:   true
+Deployment policy:                Disable redeploy
+--------------------------------------------------------------------------------
+Name:                             nuget-proxy
+Online:                           true
+Remote storage:                   https://www.nuget.org/api/v2/
+Use the Nexus truststore:         true
+Auto blocking enabled:            true
+Blob store:                       Nuget
+Strict Content Type Validation:   true
+Not found cache enabled:          true
+Deployment policy:                Disable redeploy
+--------------------------------------------------------------------------------
+Name:                             nuget-all
+Online:                           true
+Blob store:                       Nuget
+Strict Content Type Validation:   true
+Member repositories:              nuget-internal and nuget-proxy
+--------------------------------------------------------------------------------
+Name:                             python-internal
+Online:                           true
+Blob store:                       Python
+Strict Content Type Validation:   true
+Deployment policy:                Disable redeploy
+--------------------------------------------------------------------------------
+Name:                             python-proxy
+Online:                           true
+Remote storage:                   https://pypi.org/
+Use the Nexus truststore:         true
+Auto blocking enabled:            true
+Blob store:                       Python
+Strict Content Type Validation:   true
+Not found cache enabled:          true
+Deployment policy:                Disable redeploy
+--------------------------------------------------------------------------------
+Name:                             python-all
+Online:                           true
+Blob store:                       Python
+Strict Content Type Validation:   true
+Member repositories:              python-internal and python-proxy
+--------------------------------------------------------------------------------

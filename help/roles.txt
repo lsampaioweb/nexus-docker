@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+Role ID:          Docker
+Role name:        Docker
+Role Description: Permissions to Docker packages.
+
+Given:
+  nx-component-upload
+  nx-repository-view-docker-*-*
+--------------------------------------------------------------------------------
+Role ID:          HealthCheck
+Role name:        HealthCheck
+Role Description: Permissions to see the Healthcheck of the repositories.
+
+Given:
+  nx-healthcheck-read
+  nx-healthcheck-summary-read
+--------------------------------------------------------------------------------
+Role ID:          Metrics
+Role name:        Metrics
+Role Description: Permissions to see the metrics.
+
+Given:
+  nx-metrics-all
+--------------------------------------------------------------------------------
+Role ID:          nexus-admin
+Role name:        nexus-admin
+Role Description: Nexus admin group.
+
+Contained:
+  nx-admin
+--------------------------------------------------------------------------------
+Role ID:          Nuget
+Role name:        Nuget
+Role Description: Permissions to Nuget packages.
+
+Given:
+  nx-apikey-all
+  nx-component-upload
+  nx-repository-view-nuget-*-*
+--------------------------------------------------------------------------------
+Role ID:          Python
+Role name:        Python
+Role Description: Permissions to Python packages.
+
+Given:
+  nx-component-upload
+  nx-repository-view-pypi-*-*
+--------------------------------------------------------------------------------
+Role ID:          nexus-user
+Role name:        nexus-user
+Role Description: Nexus users groups.
+
+Given:
+  nx-repository-view-*-*-browse
+  nx-repository-view-*-*-read
+  nx-search-read
+
+Contained:
+  Docker
+  HealthCheck
+  Metrics
+  Nuget
+  Python
+--------------------------------------------------------------------------------
