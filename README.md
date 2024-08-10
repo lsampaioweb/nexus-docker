@@ -77,10 +77,10 @@ cp /nexus-backup/*.bak /nexus-data/restore-from-backup/
 
 1. [Restore Exported Databases.](https://help.sonatype.com/repomanager3/backup-and-restore/restore-exported-databases "Restore Exported Databases")
 
-## License:
+### License:
 
 [MIT](LICENSE "MIT License")
 
-## Created by: 
+### Created by:
 
 1. Luciano Sampaio.
